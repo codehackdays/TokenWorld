@@ -1,3 +1,4 @@
+var request = require('request');
 var express = require('express');
 var app = express();
 
@@ -11,18 +12,17 @@ app.get('/helloworld', function (req, res) {
       url: 'https://codehackdays.eu.auth0.com/oauth/token',
       headers: { 'content-type': 'application/json' },
       body: {
+        "audience":"https://codehackdays-helloworld.herokuapp.com/",
         "client_id":process.env.CLIENT_ID,
         "client_secret":process.env.CLIENT_SECRET,
-        "audience":"https://codehackdays-helloworld.herokuapp.com/",
         "grant_type":"client_credentials"
-      }
+      },
+      json: true
     };
 
     request(options, function (err, response, body) {
       if (err) { throw err };
-
-      res.setHeader('Content-Type', 'application/json');
-      res.send(JSON.stringify(response));
+      res.send(JSON.stringify(body));
   });
 });
 
