@@ -18,7 +18,7 @@ app.get('/helloworld', function (req, res) {
     if (err) { throw err; }
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Content-Type', 'application/json');
-    res.send(JSON.stringify(body));
+    res.send(body);
   });
 });
 
