@@ -21,7 +21,7 @@ app.get('/helloworld', function (req, res) {
     };
 
     request(options, function (err, response, body) {
-      if (err) { throw err };
+      if (err) { throw err; }
       res.send(JSON.stringify(body));
   });
 });
