@@ -1,3 +1,6 @@
+var pmx = require('pmx');
+var probe = pmx.probe();
+
 var request = require('request');
 var express = require('express');
 var app = express();
@@ -16,6 +19,9 @@ app.get('/helloworld', function (req, res) {
 
   request(options, function (err, response, body) {
     if (err) { throw err; }
+
+    probe.counter({ name : 'Hello World Token' }).inc();
+
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Content-Type', 'application/json');
     res.send(body);
